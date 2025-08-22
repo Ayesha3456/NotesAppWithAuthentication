@@ -1,0 +1,42 @@
+<div class="container my-4">
+  <h3 class="text-center text-primary mb-4">📝 My Notes</h3>
+
+  <!-- Add new note -->
+  <div class="card shadow-sm border-0 mb-3">
+    <div class="card-body">
+      <div class="mb-2">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Title"
+          [(ngModel)]="newTitle" />
+      </div>
+      <div class="mb-2">
+        <textarea
+          class="form-control"
+          placeholder="Description"
+          [(ngModel)]="newDescription"
+          rows="3"></textarea>
+      </div>
+      <button class="btn btn-success w-100" (click)="addNote()">Add Note</button>
+    </div>
+  </div>
+
+  <!-- Notes list -->
+  <div *ngFor="let note of notes; let i = index" class="card shadow-sm border-0 mb-2">
+    <div class="card-body">
+      <div *ngIf="!note.isEditing">
+        <h5 class="card-title">{{ note.title }}</h5>
+        <p class="card-text">{{ note.description }}</p>
+        <button class="btn btn-sm btn-outline-primary me-2" (click)="editNote(note)">Edit</button>
+        <button class="btn btn-sm btn-outline-danger" (click)="deleteNote(i)">Delete</button>
+      </div>
+
+      <div *ngIf="note.isEditing">
+        <input type="text" class="form-control mb-2" [(ngModel)]="note.title" />
+        <textarea class="form-control mb-2" [(ngModel)]="note.description" rows="2"></textarea>
+        <button class="btn btn-sm btn-success me-2" (click)="saveEdit(note)">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

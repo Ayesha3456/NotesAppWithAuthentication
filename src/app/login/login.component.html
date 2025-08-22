@@ -1,0 +1,42 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow border-0 rounded-3" style="max-width: 360px; width: 100%;">
+    <div class="card-body p-4">
+      <h4 class="text-center mb-3 fw-bold text-primary">Login</h4>
+
+      <!-- Show messages -->
+      <div *ngIf="message" class="alert alert-info small text-center py-1">{{ message }}</div>
+
+      <form (ngSubmit)="login()" #loginForm="ngForm">
+        <!-- Username -->
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            [(ngModel)]="username"
+            name="username"
+            required />
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            [(ngModel)]="password"
+            name="password"
+            required />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+
+        <p class="text-center text-muted mt-2 small">
+          Don’t have an account? <a routerLink="/register" class="text-primary fw-semibold">Register</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
